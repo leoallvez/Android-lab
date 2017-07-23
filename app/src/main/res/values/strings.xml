@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Adivinhar o Número</string>
+    <string name="btn_number_guess_game">Adivinhar o Número</string>
+    <string name="btn_guess">Chutar</string>
+    <string name="btn_new_game">Novo</string>
+    <string name="inputMessage">Qual número estou pensando?</string>
+    <string name="message_high">Não, o número que pensei era menor</string>
+    <string name="message_low">Não, o número que pensei era maior</string>
+    <string name="message_win">Parabéns você acetou!!</string>
+    <string name="confirm_new_game">Deseja começar um novo jogo?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+</resources>
