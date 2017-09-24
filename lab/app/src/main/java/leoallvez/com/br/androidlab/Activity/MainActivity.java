@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MainActivity extends AppCompatActivity {
 
     private Employee employee;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +32,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void jsonToObject(View v) {
-        final ObjectMapper mapper = new ObjectMapper();
+
         try {
+            /**
             String personJsonStr = "{\"firstname\":\"John\",\"lastname\":\"Doe\"}";
             Person person = mapper.readValue(personJsonStr, Person.class);
+             */
 
-            String employeeJsonStr = "{\"id\": 123,\"name\":\"Pankaj\",\"permanent\": true,\"address\": {\"street\": \"Albany Dr\",\"city\": \"San Jose\",\"zipcode\": 95129 },\"phoneNumbers\": [ 123456, 987654 ],\"role\": \"Manager\", \"cities\": [ \"Los Angeles\",\"New York\" ],\"properties\": {\"age\": \"29 years\",\"salary\": \"1000 USD\"}}";
+            String employeeJsonStr = "{\"id\": 123,\"name\":\"Pankaj\"" +
+                    ",\"permanent\": true,\"address\": {\"street\": \"Albany Dr\"" +
+                    ",\"city\": \"San Jose\",\"zipcode\": 95129 },\"phoneNumbers\"" +
+                    ": [ 123456, 987654 ],\"role\": \"Manager\", \"cities\"" +
+                    ": [ \"Los Angeles\",\"New York\" ],\"properties\"" +
+                    ": {\"age\": \"29 years\",\"salary\": \"1000 USD\"}}";
 
             employee = mapper.readValue(employeeJsonStr, Employee.class);
 
-            //Toast.makeText(this,"Complete Name: " + person.getCompleteNome(), Toast.LENGTH_LONG).show();
-
-            Toast.makeText(this,"Employee: " +    employee.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Employee: " + employee.toString(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
