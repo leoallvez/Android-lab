@@ -53,7 +53,7 @@ public class Person {
         this.additionalProperties.put(name, value);
     }
 
-    public String getCompleteNome() {
+    public String getCompleteName() {
         return this.firstname + " " + this.lastname;
     }
 }
