@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private List<Frase> frases;
     private String[] cores;
+    private String ultimaFrase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         cores = getCores();
         selecionarCor();
         selecionarFrase();
+        ultimaFrase = "";
     }
 
     public void onClick(View v) {
@@ -49,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         Random randomico = new Random();
         int numeroAleatorio = randomico.nextInt(frases.size());
         Frase frase = frases.get(numeroAleatorio);
+
+        while(frase.getTexto().equals(ultimaFrase)) {
+            numeroAleatorio = randomico.nextInt(frases.size());
+            frase = frases.get(numeroAleatorio);
+        }
+        ultimaFrase = frase.getTexto();
         textoNovaFrase.setText(frase.getTexto());
         autorNovaFrase.setText("("+frase.getAutor()+")");
     }
@@ -142,10 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 "Jufras Menhal"
         ));
 
-
         frases.add(new Frase(
                 "Há sempre alguma loucura no amor. Mas há sempre um pouco de razão na loucura.",
-                "(Friedrich Nietzsche"
+                "Friedrich Nietzsche"
         ));
 
         frases.add(new Frase(

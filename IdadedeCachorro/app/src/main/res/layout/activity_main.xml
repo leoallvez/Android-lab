@@ -53,7 +53,6 @@
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-
     <Button
         android:layout_width="148dp"
         android:layout_height="wrap_content"
@@ -64,7 +63,6 @@
         android:onClick="calcular"
         android:text="@string/descobri_idade" />
 
-
     <TextView
         android:id="@+id/textViewIdade"
         android:layout_width="match_parent"
@@ -74,6 +72,4 @@
         android:textSize="20sp"
         android:textColor="#FFF"
         android:layout_height="wrap_content" />
-
-
 </LinearLayout>

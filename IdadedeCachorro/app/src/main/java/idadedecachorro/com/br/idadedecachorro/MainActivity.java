@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText idade;
     private TextView displayIdade;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         String idadeString = idade.getText().toString();
 
         if(!idadeString.isEmpty()) {
-
             int idadeInt = Integer.parseInt(idadeString);
             displayIdade.setText("A idade humana do cachorro é: " + idadeInt * 15 + " anos");
+        }else{
+            Toast.makeText(this, "Por favor digite uma idade!", Toast.LENGTH_SHORT).show();
         }
+
     }
-
-
 }
