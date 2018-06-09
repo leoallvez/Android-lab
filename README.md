@@ -1,2 +1,2 @@
 # android-lab
-Application for tests 
+Android application development studies
