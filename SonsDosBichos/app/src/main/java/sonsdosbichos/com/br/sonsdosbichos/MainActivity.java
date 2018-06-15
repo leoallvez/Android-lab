@@ -1,10 +1,15 @@
 package sonsdosbichos.com.br.sonsdosbichos;
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import java.io.IOException;
+import java.util.concurrent.CancellationException;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -20,6 +25,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
 
         cao    = (ImageView) findViewById(R.id.caoId);
         vaca   = (ImageView) findViewById(R.id.vacaId);
@@ -39,33 +52,63 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
 
     public void onClick(View v){
-        v.getId();
 
-        switch(v.getId()){
-            case R.id.caoId:
-                play(R.raw.cao);
-                break;
-            case R.id.vacaId:
-                play(R.raw.vaca);
-                break;
-            case R.id.gatoId:
-                play(R.raw.gato);
-                break;
-            case R.id.leaoId:
-                play(R.raw.leao);
-                break;
-            case R.id.macacoId:
-                play(R.raw.macaco);
-                break;
-            case R.id.ovelhaId:
-                play(R.raw.ovelha);
-                break;
+
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.reset();
+
+            switch (v.getId()) {
+                case R.id.caoId:
+                    play(R.raw.cao);
+                    break;
+                case R.id.vacaId:
+                    play(R.raw.vaca);
+                    break;
+                case R.id.gatoId:
+                    play(R.raw.gato);
+                    break;
+                case R.id.leaoId:
+                    play(R.raw.leao);
+                    break;
+                case R.id.macacoId:
+                    play(R.raw.macaco);
+                    break;
+                case R.id.ovelhaId:
+                    play(R.raw.ovelha);
+                    break;
+            }
+    }
+
+    private void playOld(int id_midia){
+        mediaPlayer = MediaPlayer.create(this, id_midia);
+        mediaPlayer.start();
+    }
+
+    private void play(int id_midia) {
+        try {
+            AssetFileDescriptor afd = getResources().openRawResourceFd(id_midia);
+            if (afd != null) {
+                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                mediaPlayer.prepareAsync();
+            }
+
+        } catch (IOException e) {
+            Log.e("", e.getMessage());
         }
     }
 
-    private void play(int id_midia){
-        mediaPlayer = MediaPlayer.create(this, id_midia);
-        mediaPlayer.start();
+    @Override
+    protected void onStop() {
+        if(mediaPlayer != null) {
+
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+        }
+        super.onStop();
     }
 
     @Override
