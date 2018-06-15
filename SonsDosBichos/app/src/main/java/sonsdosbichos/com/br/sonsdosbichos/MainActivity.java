@@ -80,7 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     break;
             }
     }
-
+    
+    @Deprecated
     private void playOld(int id_midia){
         mediaPlayer = MediaPlayer.create(this, id_midia);
         mediaPlayer.start();
@@ -95,7 +96,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
         } catch (IOException e) {
-            Log.e("", e.getMessage());
+            Log.e("MainActivity@play", e.getMessage());
         }
     }
 
