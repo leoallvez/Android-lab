@@ -7,19 +7,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome do produto"
-            android:id="@+id/txt_produto"/>
+    tools:context=".activity.MainActivity">
 
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="inserir"
-            android:id="@+id/btn_inserir"/>
+            android:text="Adicionar itens"
+            android:id="@+id/btn_adicionar"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TOTAL: 0,00"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:id="@+id/txt_total"/>
 
     <ListView
             android:layout_width="wrap_content"
