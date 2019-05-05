@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
             produtosAdapter.remove(item)
             true
         }
+        */
 
         btn_adicionar.setOnClickListener{
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
-        */
     }
 }
