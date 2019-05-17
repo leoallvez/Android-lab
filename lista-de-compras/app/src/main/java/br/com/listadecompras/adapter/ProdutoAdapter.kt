@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.listadecompras.R
 import br.com.listadecompras.model.Produto
+import java.text.NumberFormat
+import java.util.*
 
 class ProdutoAdapter(contexto: Context) : ArrayAdapter<Produto>(contexto, 0) {
 
@@ -29,7 +31,8 @@ class ProdutoAdapter(contexto: Context) : ArrayAdapter<Produto>(contexto, 0) {
 
         produto.text = item.nome
         quantidade.text = item.quantidade.toString()
-        valor.text = item.valor.toString()
+        val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+        valor.text = f.format(item.valor.toString())
 
         if(item.foto != null) {
             imagem.setImageBitmap(item.foto)
