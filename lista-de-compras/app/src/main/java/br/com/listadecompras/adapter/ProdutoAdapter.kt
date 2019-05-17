@@ -32,7 +32,7 @@ class ProdutoAdapter(contexto: Context) : ArrayAdapter<Produto>(contexto, 0) {
         produto.text = item.nome
         quantidade.text = item.quantidade.toString()
         val f = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
-        valor.text = f.format(item.valor.toString())
+        valor.text = f.format(item.valor)
 
         if(item.foto != null) {
             imagem.setImageBitmap(item.foto)

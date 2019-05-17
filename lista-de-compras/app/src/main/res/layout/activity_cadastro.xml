@@ -26,6 +26,13 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Nome produto"
+            android:id="@+id/txt_produto"/>
+
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="Quantidade"
             android:id="@+id/txt_quantidade"/>
