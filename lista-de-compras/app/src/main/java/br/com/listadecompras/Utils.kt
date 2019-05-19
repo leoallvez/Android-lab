@@ -1,3 +1,14 @@
 package br.com.listadecompra
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import java.io.ByteArrayOutputStream
 
-val produtosGlobal = mutableListOf<br.com.listadecompras.model.Produto>()
+fun Bitmap.toByteArray(): ByteArray {
+    val stream = ByteArrayOutputStream()
+    this.compress(Bitmap.CompressFormat.PNG, 0, stream)
+    return stream.toByteArray()
+}
+
+fun ByteArray.toBitmap() : Bitmap {
+    return BitmapFactory.decodeByteArray(this, 0, this.size)
+}

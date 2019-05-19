@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        
+
         val adapter = list_view_produtos.adapter as ProdutoAdapter
         adapter.clear()
         adapter.addAll(produtosGlobal)
