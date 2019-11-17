@@ -11,9 +11,9 @@ class OutraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_outra)
 
-        val pessoa = intent.getSerializableExtra("pessoa") as Pessoa?
+        //val pessoa = intent.getSerializableExtra("pessoa") as Pessoa?
 
-        //val pessoa = Parcels.unwrap<Pessoa?>(intent.getSerializableExtra("pessoa"))
+        val pessoa = Parcels.unwrap<Pessoa?>(intent.getParcelableExtra("pessoa"))
 
         pessoa?.let {
             text_mensagem.text = "Nome: ${pessoa.nome} / Idade: ${pessoa.idade}"
