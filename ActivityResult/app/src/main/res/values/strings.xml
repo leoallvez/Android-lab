@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ActivityResult</string>
+    <string-array name="stades">
+        <item>Alagoas</item>
+        <item>Bahia</item>
+        <item>Ceara</item>
+        <item>Maralhão</item>
+        <item>Paraíba</item>
+        <item>Pernanbuco</item>
+        <item>Paiui</item>
+        <item>Sergipe</item>
+        <item>Rio Grande do Norte</item>
+    </string-array>
+</resources>
