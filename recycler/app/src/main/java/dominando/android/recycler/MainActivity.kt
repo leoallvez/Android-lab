@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,11 +16,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        lastNonConfigurationInstance?.let { savedMessages ->
+            if(savedMessages is MutableList<*>) {
+                messages.addAll(savedMessages.filterIsInstance(Message::class.java))
+            }
+        }
         initRecyclerView()
         fabAdd.setOnClickListener {
             addMessage()
         }
     }
+
+    override fun onRetainCustomNonConfigurationInstance(): Any = messages
 
     private fun initRecyclerView() {
         rvMessages.adapter = adapter
@@ -30,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         rvMessages.layoutManager = layoutManager
+        initSwipeGesture()
     }
 
     private fun addMessage() {
@@ -44,5 +54,27 @@ class MainActivity : AppCompatActivity() {
     private fun onMessageItemClick(message: Message) {
         val s = "${message.title}\n${message.text}"
         Toast.makeText(this, s, Toast.LENGTH_LONG).show()
+    }
+
+    private fun initSwipeGesture() {
+        val swipe = object : ItemTouchHelper.SimpleCallback(
+            0, //Posições permitidas para mover a view. zero = nenhuma
+             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT //Posições de swipe
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = false // Não permite mover itens
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                messages.removeAt(position)
+                adapter.notifyItemRemoved(position)
+
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipe)
+        itemTouchHelper.attachToRecyclerView(rvMessages)
     }
 }
