@@ -1,2 +1,2 @@
 # android-lab
-Android application development studies.
+Android application development studies
